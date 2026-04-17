@@ -1,22 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Color Palette */
-  --deep-navy: #101828;
-  --electric-teal: #14B8A6;
-  --teal-hover: #0d9488;
-  --emerald-green: #059669;
+  /* Editorial Trust Color Palette */
+  --deep-navy: #1A2B3C;
+  --electric-teal: #20C997;
+  --teal-hover: #17a87e;
+  --emerald-green: #20C997; /* Mapped to Action Teal for consistency */
   --slate-gray: #64748B;
-  --white: #ffffff;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --badge-bg: rgba(20, 184, 166, 0.15);
-
+  
+  /* Semantic Re-Mapping for Light Theme Transition */
+  --white: #1A2B3C; /* Hack: Elements explicitly styled 'white' become Deep Navy text */
+  --true-white: #ffffff; /* Actual white for surfaces */
+  
+  /* Surfaces & Neutrals */
+  --glass-bg: #ffffff; 
+  --glass-border: #e2e8f0;
+  --app-bg: #f8fafc; /* Neutral Sky for body */
+  
   /* Typography */
+  --text-primary: #1A2B3C;
+  --text-secondary: #475569;
+  --badge-bg: #f1f5f9;
   --font-family: 'Inter', sans-serif;
 }
+
 
 * {
   margin: 0;
@@ -26,16 +33,12 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--deep-navy);
+  background-color: var(--app-bg);
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(20, 184, 166, 0.08), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(5, 150, 105, 0.08), transparent 25%);
-  background-attachment: fixed;
 }
 
 a {
@@ -61,14 +64,12 @@ ul {
   padding-top: 100px; /* Accounts for sticky header */
 }
 
-/* Glassmorphism Utilities */
+/* Digital Curator Surfaces */
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; /* ROUND_EIGHT */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm elevation */
 }
 
 /* Bento Box Grid */
@@ -80,13 +81,14 @@ ul {
 
 .bento-box {
   padding: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 8px; /* ROUND_EIGHT */
 }
 
 .bento-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(20, 184, 166, 0.15);
-  border-color: rgba(20, 184, 166, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-color: rgba(32, 201, 151, 0.3);
 }
 
 /* Buttons */
@@ -95,42 +97,43 @@ ul {
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 8px; /* ROUND_EIGHT */
   font-weight: 600;
   cursor: pointer;
   border: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary {
   background: var(--electric-teal);
-  color: var(--deep-navy);
+  color: var(--true-white);
 }
 
 .btn-primary:hover {
   background: var(--teal-hover);
-  transform: scale(1.05);
+  transform: translateY(-1px);
 }
 
 .btn-outline {
-  background: transparent;
+  background: var(--true-white);
   border: 1px solid var(--electric-teal);
   color: var(--electric-teal);
 }
 
 .btn-outline:hover {
   background: var(--badge-bg);
-  transform: scale(1.05);
+  transform: translateY(-1px);
 }
 
 .btn-green {
-  background: var(--emerald-green);
-  color: var(--white);
+  background: var(--electric-teal);
+  color: var(--true-white);
 }
 
 .btn-green:hover {
-  background: #047857;
-  transform: scale(1.05);
+  background: var(--teal-hover);
+  transform: translateY(-1px);
 }
 
 /* Header */
@@ -141,11 +144,10 @@ ul {
   width: 100%;
   z-index: 1000;
   padding: 1rem 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-left: none;
-  border-right: none;
-  border-top: none;
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-top: none; border-left: none; border-right: none;
 }
 
 .header .container {
@@ -195,11 +197,12 @@ ul {
   border: 1px solid rgba(20, 184, 166, 0.3);
 }
 
-/* Footer */
+/* Footer - High Trust Background */
 .footer {
   margin-top: 4rem;
-  padding: 3rem 0;
-  border-top: 1px solid var(--glass-border);
+  padding: 4rem 0;
+  background-color: var(--deep-navy);
+  color: var(--text-secondary);
 }
 
 .footer-content {
@@ -210,7 +213,7 @@ ul {
 }
 
 .footer h4 {
-  color: var(--white);
+  color: var(--true-white);
   margin-bottom: 1rem;
 }
 
@@ -232,7 +235,13 @@ ul {
   color: var(--slate-gray);
   font-size: 0.8rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Headings Base (Bold & Confident per Editorial Trust) */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--deep-navy);
 }
 
 /* Animations */
@@ -348,22 +357,23 @@ ul {
 
 /* Page Specific: B2C */
 .awareness-banner {
-  background: linear-gradient(135deg, rgba(20, 184, 166, 0.2), rgba(5, 150, 105, 0.2));
-  border: 1px solid var(--electric-teal);
+  background: var(--deep-navy);
+  border: 1px solid var(--glass-border);
   padding: 2rem;
-  border-radius: 16px;
+  border-radius: 8px; /* ROUND_EIGHT */
   text-align: center;
   margin: 2rem 0 4rem 0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .awareness-banner h2 {
-  color: var(--white);
+  color: var(--true-white);
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
 .awareness-banner p {
-  color: var(--emerald-green);
+  color: var(--electric-teal);
   font-size: 1.25rem;
   font-weight: 600;
 }
@@ -474,7 +484,7 @@ ul {
 .step-circle {
   width: 50px;
   height: 50px;
-  background: var(--deep-navy);
+  background: var(--true-white);
   border: 2px solid var(--electric-teal);
   border-radius: 50%;
   display: flex;
@@ -487,7 +497,7 @@ ul {
 
 .step.active .step-circle {
   background: var(--electric-teal);
-  color: var(--deep-navy);
+  color: var(--true-white);
 }
 
 .eligibility-widget {
@@ -534,7 +544,7 @@ ul {
 .stat-box .value {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--deep-navy);
 }
 
 .stat-box .trend.up {
